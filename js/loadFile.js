@@ -1,6 +1,9 @@
-var JsonObj = null;
+var characterBuilder = {};
+characterBuilder.character = {};
 
-function handleFileSelect(evt) {
+characterBuilder.validateCharacter = function validateCharacter(someCharacter) { };
+
+characterBuilder.loadCharacter = function loadCharacter(evt) {
     var files = evt.target.files; // FileList object
     f = files[0];
     var reader = new FileReader();
@@ -8,19 +11,23 @@ function handleFileSelect(evt) {
     // Closure to capture the file information.
     reader.onload = (function (theFile) {
         return function (e) { 
-            JsonObj = e.target.result
-            console.log(JsonObj);
-            var parsedJSON = JSON.parse(JsonObj);
-            console.log(parsedJSON);
+            var jsonObj = e.target.result
+            var parsedJSON = JSON.parse(jsonObj);
+            characterBuilder.validateCharacter(parsedJSON);
+            characterBuilder.character = parsedJSON;
         };
     })(f);
 
     // Read in JSON as a data URL.
     reader.readAsText(f, 'UTF-8');
-}
+};
 
-function saveTextAsFile() {
-    var blob = new Blob(["Hi"], {type:"text/plain"});
+characterBuilder.saveCharacter = function saveCharacter() {
+    var destroyClickedElement = function destroyClickedElement(e) {
+        document.body.removeChild(e.target);
+    };
+    var characterInStringForm = JSON.stringify(characterBuilder.character);
+    var blob = new Blob([characterInStringForm], {type:"text/plain"});
     var downloadLink = document.createElement("a");
     downloadLink.download = "test.txt";
     downloadLink.innerHTML = "Download File";
@@ -31,6 +38,3 @@ function saveTextAsFile() {
     downloadLink.click();
 }
 
-function destroyClickedElement(e) {
-    document.body.removeChild(e.target);
-}
