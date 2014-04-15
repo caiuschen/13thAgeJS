@@ -4,18 +4,14 @@
     <title>13th Age Character Builder</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.3/angular.min.js"></script>
     <script src="js/controllers.js"></script>
-    <script src="js/loadFile.js"></script>
   </head>
   <body data-ng-controller="CharacterBuilderCtrl">
     <h1>13th Age Character Builder</h1>
     <p>Nothing here {{'yet' + '!'}}</p>
-    <p id="debugOutput"></p>
+    <p id="debugOutput">{{ debugContent }}</p>
     <div>
-      <label>Load character <input type="file" id="files" name="files[]" /></label>
+      <label>Load character <input type="file" id="files" name="files[]" data-on-read-file="debug($fileContent)" /></label>
     </div>
     <button type="button" data-ng-click="saveCharacter()">Save Character</button>
-    <script type="text/javascript">
-        document.getElementById("files").addEventListener("change", characterBuilder.loadCharacter, false);
-    </script>
   </body>
 </html>

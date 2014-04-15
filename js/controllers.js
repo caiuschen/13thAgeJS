@@ -5,6 +5,8 @@ characterBuilderApp.controller('CharacterBuilderCtrl', function ($scope, $http) 
         $scope.classes = data;
     });
 
+    $scope.debugContent = "";
+
     $scope.character = {
         characterName : "No character name",
         playerName : "No player name",
@@ -49,6 +51,7 @@ characterBuilderApp.controller('CharacterBuilderCtrl', function ($scope, $http) 
         downloadLink.click();
     }
 
+
     $scope.loadCharacter = function loadCharacter(evt) {
         var validateCharacter = function _validateCharacter(someCharacter) { };
         var files = evt.target.files; // FileList object
@@ -70,8 +73,33 @@ characterBuilderApp.controller('CharacterBuilderCtrl', function ($scope, $http) 
         reader.readAsText(f, 'UTF-8');
     };
 
-    $scope.outputToDebugSection = function outputToDebugSection(text) {
-        var debugSection = document.getElementById("debugOutput");
-        debugSection.innerHTML = text;
+
+    $scope.debug = function debug(text) {
+        $scope.debugContent = text;
     };
 });
+
+// Much of this I don't understand yet.  http://jsfiddle.net/alexsuch/6aG4x/
+// http://veamospues.wordpress.com/2014/01/27/reading-files-with-angularjs/
+characterBuilderApp.directive('onReadFile', function ($parse) {
+    return {
+        restrict: 'A',
+        scope: false,
+        link: function(scope, element, attrs) {
+            var fn = $parse(attrs.onReadFile);
+            
+            element.on('change', function(onChangeEvent) {
+                var reader = new FileReader();
+                
+                reader.onload = function(onLoadEvent) {
+                    scope.$apply(function() {
+                        fn(scope, {$fileContent:onLoadEvent.target.result});
+                    });
+                };
+
+                reader.readAsText((onChangeEvent.srcElement || onChangeEvent.target).files[0]);
+            });
+        }
+    };
+});
+
