@@ -36,10 +36,14 @@ characterBuilderApp.controller('CharacterBuilderCtrl', function ($scope, $http) 
     };
 
     $scope.saveCharacter = function saveCharacter() {
+        $scope.debug($scope.character);
+        // There's a bit of oddity where we need to add an actual link to save
+        // the file, but since we don't need the link we destroy it immediately
+        // afterwards.
         var destroyClickedElement = function destroyClickedElement(e) {
             document.body.removeChild(e.target);
         };
-        var characterInStringForm = JSON.stringify(this.character);
+        var characterInStringForm = JSON.stringify($scope.character);
         var blob = new Blob([characterInStringForm], {type:"text/plain"});
         var downloadLink = document.createElement("a");
         downloadLink.download = "character.txt";
@@ -51,28 +55,12 @@ characterBuilderApp.controller('CharacterBuilderCtrl', function ($scope, $http) 
         downloadLink.click();
     }
 
-
-    $scope.loadCharacter = function loadCharacter(evt) {
+    $scope.loadCharacter = function loadCharacter(fileContent) {
         var validateCharacter = function _validateCharacter(someCharacter) { };
-        var files = evt.target.files; // FileList object
-        f = files[0];
-        var reader = new FileReader();
-    
-        // Closure to capture the file information.
-        reader.onload = (function (theFile) {
-            return function (e) { 
-                var jsonObj = e.target.result
-                var parsedJSON = JSON.parse(jsonObj);
-                validateCharacter(parsedJSON);
-                $scope.character = parsedJSON;
-                $scope.outputToDebugSection(JSON.stringify(parsedJSON));
-            };
-        })(f);
-    
-        // Read in JSON as a data URL.
-        reader.readAsText(f, 'UTF-8');
+        var parsedJSON = JSON.parse(fileContent);
+        validateCharacter(parsedJSON);
+        $scope.character = parsedJSON;
     };
-
 
     $scope.debug = function debug(text) {
         $scope.debugContent = text;
