@@ -5,12 +5,16 @@ characterBuilderApp.controller('CharacterBuilderCtrl', function ($scope, $http) 
         $scope.classes = data;
     });
 
+    $http.get('json/races.json').success(function(data) {
+        $scope.races = data;
+    });
+
     $scope.debugContent = "";
 
     $scope.character = {
-        characterName : "No character name",
-        playerName : "No player name",
-        oneUniqueThing : "No one unique thing",
+        characterName : "",
+        playerName : "",
+        oneUniqueThing : "",
         level : 1,
         baseAbilities : {
             strength : 8,

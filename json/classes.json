@@ -1,1 +1,12 @@
-["fighter", "rogue"]
+[
+    {
+        "name" : "fighter",
+        "abilityOptions" : ["strength", "constitution"],
+        "allowedNumberOfAbilityAdjustments" : 1
+    },
+    {
+        "name" : "rogue",
+        "abilityOptions" : ["dexterity", "charisma"],
+        "allowedNumberOfAbilityAdjustments" : 1
+    }
+]

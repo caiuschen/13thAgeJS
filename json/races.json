@@ -1,0 +1,252 @@
+[
+    {
+        "name" : "human",
+        "abilityOptions" : ["strength","constitution","dexterity","intelligence","wisdom","charisma"],
+        "grantsBonusFeat" : true,
+        "racialPowers" : [
+            {
+                "name" : "Quick to Fight",
+                "frequency" : "per battle",
+                "officialDescription" : "<p>At the start of each battle, roll initiative twice and choose the result you want.</p>",
+                "associatedFeats" : {
+                    "champion" : {
+                        "officialDescription" : "If you roll a natural 19 or 20 for initiative, increase the escalation die by 1 (usually from 0 to 1 since it's the start of the battle)."
+                    }
+                }
+                
+            }
+        ]
+    },
+    {
+        "name" : "dwarf",
+        "abilityOptions" : ["consitution", "wisdom"],
+        "racialPowers" : [
+            {
+                "name" : "That's Your Best Shot?",
+                "frequency" : "per battle",
+                "officialDescription" : "<p>Once per battle as a free action after you have been hit by an enemy attack, you can heal using a recovery. If the escalation die is less than 2, you only get half the usual healing from the recovery. Unlike other recoveries that might allow you to take an average result, you have to roll this one!</p><p>Note that you can’t use this ability if the attack drops you to 0 hp or below. You’ve got to be on your feet to sneer at their attack and recover.</p>",
+                "associatedFeats" :  {
+                    "champion" : {
+                        "officialDescription" : "If the escalation die is 2+ when you use that's your best shot, the recovery is free."
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "name" : "half-orc",
+        "abilityOptions" : ["strength", "dexterity"],
+        "racialPowers" : [
+            {
+                "name" : "Lethal",
+                "frequency" : "per battle",
+                "officialDescription" : "Once per battle, reroll a melee attack and use the roll you prefer as the result.",
+                "associatedFeats" : {
+                    "champion" : {
+                        "officialDescription" : "If the lethal attack reroll is a natural 16+, you can use lethal again later this battle."
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "name" : "dark elf",
+        "abilityOptions" : ["dexterity","charisma"],
+        "associatedFeats" : {
+            "adventurer" : {
+                "name" : "Heritage of the Sword",
+                "officialDescription" : "<p>If you can already use swords that deal d6 and d8 damage without attack penalties, you gain a +2 damage bonus with them.</p><p>Otherwise, if your class would ordinarily have an attack penalty with such swords, you can now use them without penalties.</p>",
+                "calculatedEffectsApplied" : ["elfSwordUpgrade"]
+            }
+        },
+        "racialPowers" : [
+            {
+                "name" : "Cruel",
+                "frequency" : "per battle",
+                "officialDescription" : "<p>Once per battle, deal ongoing damage to a target you hit with a natural even attack roll as a free action. The ongoing damage equals 5 times your level. (For example, at 3rd level you would deal 15 ongoing damage against a single target.) As usual, a normal save (11+) ends the damage.</p><p>A critical hit doesn’t double this ongoing damage.</p>",
+                "characterSheetDescription" : "On natural even hit, deal {{5 * level}} ongoing damage against 1 foe, save ends.",
+                "associatedFeats" : {
+                    "champion" : {
+                        "officialDescription" : "If you roll a natural 19 or 20 for initiative, increase the escalation die by 1 (usually from 0 to 1 since it's the start of the battle)."
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "name" : "high elf",
+        "abilityOptions" : ["intelligence","charisma"],
+        "associatedFeats" : {
+            "adventurer" : {
+                "name" : "Heritage of the Sword",
+                "officialDescription" : "<p>If you can already use swords that deal d6 and d8 damage without attack penalties, you gain a +2 damage bonus with them.</p><p>Otherwise, if your class would ordinarily have an attack penalty with such swords, you can now use them without penalties.</p>",
+                "calculatedEffectsApplied" : ["elfSwordUpgrade"]
+            }
+        },
+        "racialPowers" : [
+            {
+                "name" : "Highblood Teleport",
+                "frequency" : "per battle",
+                "officialDescription" : "Once per battle as a move action, place yourself in a nearby location you can see.",
+                "associatedFeats" : {
+                    "champion" : {
+                        "officialDescription" : "Deal damage equal to twice your level to one enemy engaged with you before or after you teleport."
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "name" : "wood elf",
+        "abilityOptions" : ["dexterity","wisdom"],
+        "associatedFeats" : {
+            "adventurer" : {
+                "name" : "Heritage of the Sword",
+                "officialDescription" : "<p>If you can already use swords that deal d6 and d8 damage without attack penalties, you gain a +2 damage bonus with them.</p><p>Otherwise, if your class would ordinarily have an attack penalty with such swords, you can now use them without penalties.</p>",
+                "calculatedEffectsApplied" : ["elfSwordUpgrade"]
+            }
+        },
+        "racialPowers" : [
+            {
+                "name" : "Elven Grace",
+                "frequency" : "at will",
+                "officialDescription" : "<p>At the start of each of your turns, roll a die to see if you get an extra standard action. If your roll is equal to or lower than the escalation die, you get an extra standard action that turn.</p><p>At the start of battle, you roll a d6. Each time you successfully gain an extra action, the size of the die you roll increases by one step on the following progression: (d4), d6, d8, d10, d12, d20. If you get an extra action after rolling a d20, you can’t get any more extra actions that battle.</p>",
+                "associatedFeats" : {
+                    "champion" : {
+                        "officialDescription" : "Once per day, start a battle rolling a d4 for elven grace instead of a d6.",
+                        "dailyUse" : 1
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "name" : "gnome",
+        "abilityOptions" : ["dexterity", "intelligence"],
+        "traits" : [
+            {
+                "name" : "Small",
+                "officialDescription" : "Gnomes have a +2 AC bonus against opportunity attacks."
+            }
+        ],
+        "racialPowers" : [
+            {
+                "name" : "Confounding",
+                "frequency" : "per battle",
+                "officialDescription" : "Once per battle, when you roll a natural 16+ with an attack, you can also daze the target until the end of your next turn.",
+                "associatedFeats" : {
+                    "champion" : {
+                        "officialDescription" : "Instead of being dazed, the target of your confounding ability is weakened until the end of your next turn."
+                    }
+                }
+            },
+            {
+                "name" : "Minor Illusions",
+                "frequency" : "at will",
+                "officialDescription" : "As a standard action, at-will, you can create a strong smell or a sound nearby. Nearby creatures that fail a normal save notice the smell or sound. Creatures that make the save may notice it but recognize it as not exactly real."
+            }
+        ]
+    },
+    {
+        "name" : "half-elf",
+        "abilityOptions" : ["consitution", "charisma"],
+        "racialPowers" : [
+            {
+                "name" : "Surprising",
+                "frequency" : "per battle",
+                "officialDescription" : "Once per battle, subtract one from the natural result of one of your own d20 rolls.",
+                "associatedFeats" :  {
+                    "champion" : {
+                        "officialDescription" : "You gain an additional use of surprising each battle, but you can only use it to affect a nearby ally’s d20 roll."
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "name" : "halfling",
+        "abilityOptions" : ["consitution", "dexterity"],
+        "traits" : [
+            {
+                "name" : "Small",
+                "officialDescription" : "Halflings have a +2 AC bonus against opportunity attacks."
+            }
+        ],
+        "racialPowers" : [
+            {
+                "name" : "Evasive",
+                "frequency" : "per battle",
+                "officialDescription" : "Once per battle, force an enemy that hits you with an attack to reroll the attack with a –2 penalty.",
+                "associatedFeats" :  {
+                    "champion" : {
+                        "officialDescription" : "The enemy’s reroll when you use evasive takes a –5 penalty instead."
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "name" : "dragonic",
+        "abilityOptions" : ["strength", "charisma"],
+        "racialPowers" : [
+            {
+                "name" : "Breath Weapon",
+                "frequency" : "per battle",
+                "officialDescription" : "Once per battle, make a close-quarters breath weapon attack as a quick action using your highest ability score against one nearby enemy’s Physical Defense. On a hit, the attack deals 1d6 damage per your level of an energy type that makes sense for your character.",
+                "associatedFeats" :  {
+                    "champion" : {
+                        "officialDescription" : "Your breath weapon attack targets 1d3 nearby enemies in a group instead."
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "name" : "holy one",
+        "abilityOptions" : ["wisdom", "charisma"],
+        "racialPowers" : [
+            {
+                "name" : "Halo",
+                "frequency" : "per battle",
+                "officialDescription" : "Once per battle as a free action during your turn, gain a +2 bonus to all defenses until you are hit by an attack (or until the battle ends).",
+                "associatedFeats" :  {
+                    "champion" : {
+                        "officialDescription" : "Halo also activates automatically any time you heal using a recovery."
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "name" : "forgeborn",
+        "abilityOptions" : ["strength", "constitution"],
+        "racialPowers" : [
+            {
+                "name" : "Never Say Die",
+                "frequency" : "at will",
+                "officialDescription" : "Whenever you drop to 0 hp or below, roll a normal save if you have a recovery available. On an 11+, instead of falling unconscious, you stay on your feet and can heal using a recovery. Add the recovery hit points to 0 hp to determine your hp total.",
+                "associatedFeats" :  {
+                    "champion" : {
+                        "officialDescription" : "If you roll a 16+ on your never say die save, you gain an additional standard action during your next turn."
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "name" : "tiefling",
+        "abilityOptions" : ["strength", "intelligence"],
+        "racialPowers" : [
+            {
+                "name" : "Curse of Chaos",
+                "frequency" : "at will",
+                "officialDescription" : "<p>Once per battle as a free action when a nearby enemy rolls a natural 1–5 on an attack or a save, turn their roll into a natural 1 and improvise a further curse that shows how their attempt backfires horribly.</p><p>Start with the other racial once-per-battle abilities as a model of how big an impact this power should have . . . but feel free to go a little beyond, since the timing of the power is out of the tiefling’s control.</p><p>A typical curse might lead to the cursed attacker dealing half damage to themselves with their fumbled attack and being dazed until the end of their next turn. But the GM should reward storytelling flair that aims at effects that aren’t just game mechanics and damage with significant outcomes.</p><p>If the GM thinks your suggestion is going too far, they can enforce a smaller version of your curse or call for an unmodified d20 roll on which you’d better roll high to get the curse result you’ve suggested.</p>",
+                "associatedFeats" :  {
+                    "champion" : {
+                        "officialDescription" : "Whenever a nearby enemy rolls a natural 1 on an attack against you, you can use curse of chaos against them without expending it."
+                    }
+                }
+            }
+        ]
+    }
+]

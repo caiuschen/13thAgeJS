@@ -10,12 +10,14 @@
 
     <h1>13th Age Character Builder</h1>
 
-    <label>Character name: <input type="text" data-ng-model="character.characterName"></label>
+    <label>Race: <select data-ng-model="character.raceSelection.name" data-ng-options="race.name as race.name for race in races"></select></label>
+    <label>Class: <select data-ng-model="character.classSelection.name" data-ng-options="clazz.name as clazz.name for clazz in classes"></select></label>
+    <label>Character name: <input type="text" data-ng-model="character.characterName" placeholder="Character name&hellip;"></label>
     <label>Player name: <input type="text" data-ng-model="character.playerName"></label>
     <label>One Unique Thing: <textarea data-ng-model="character.oneUniqueThing"></textarea></label>
 
-    <h4>Debug:</h4>
-    <p id="debugOutput">{{ debugContent }}</p>
+    <h4>Preview:</h4>
+    <p id="debugOutput">{{ character }}</p>
     <div>
       <label>Load character <input type="file" id="files" name="files[]" data-on-read-file="loadCharacter($fileContent)" /></label>
     </div>
