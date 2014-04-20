@@ -1,1 +1,3 @@
 stylesheets
+*.swp
+.sass-cache
