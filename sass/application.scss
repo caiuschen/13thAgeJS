@@ -1,0 +1,18 @@
+/* Following the guidelines established by MVCSS, this acts as the loader file.  It consists of the core, modules, and the INBOX.
+ */
+
+/* Core
+ * 1) Reset
+ * 2) Settings
+ * 3) Helpers, Utilities
+ * 4) Base level tag styling, typography, layout
+ */
+
+@import "normalize";
+@import "compass/typography/lists/horizontal-list";
+
+/* Modules
+ */
+
+/* INBOX - Add styles temporarily here if you're not sure where it should go or believe it needs more review.
+ */
