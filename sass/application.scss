@@ -10,9 +10,74 @@
 
 @import "normalize";
 @import "compass/typography/lists/horizontal-list";
+@import "compass/css3/border-radius";
+
+/* Settings
+ */
+
+$mainBackgroundColor: #fffaea;
+
+/* Base level styling.
+ */
+
+body {
+    background: $mainBackgroundColor;
+    font-family: Athelas, serif;
+}
 
 /* Modules
  */
 
 /* INBOX - Add styles temporarily here if you're not sure where it should go or believe it needs more review.
  */
+
+$tabSelectionWidth : 15em;
+$tabSelectionHorizontalPadding: 1em;
+$mainContentMarginLeft : $tabSelectionWidth + 2 * $tabSelectionHorizontalPadding + 2em;
+
+.tabSelection {
+    background: #eee;
+    padding: 5em 0 0 $tabSelectionHorizontalPadding;
+    position: fixed;
+    display: table-cell;
+    height: 100%;
+    margin: 0;
+    top: 0;
+    width: $tabSelectionWidth;
+    text-align: right;
+    list-style-type: none;
+    border-right: 1px solid black;
+}
+
+.tabSelection-tab {
+    border: 1px solid black;
+    background: #eba;
+    padding-right: $tabSelectionHorizontalPadding;
+    line-height: 1.5em;
+    margin-bottom: 0.5em;
+    position: relative;
+    left: 1px;
+    cursor: pointer;
+    @include border-radius(0.5em 0 0 0.5em);
+}
+
+.tabSelection-tab-isActive {
+    border-right: none;
+    background: $mainBackgroundColor;
+}
+
+.titleBar {
+    margin-left: $mainContentMarginLeft;
+}
+
+.preview {
+    margin-left: $mainContentMarginLeft;
+}
+
+.mainContent {
+    margin-left: $mainContentMarginLeft + 0.1em;
+}
+
+.loadAndSave {
+    margin-left: $mainContentMarginLeft;
+}

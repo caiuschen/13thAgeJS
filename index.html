@@ -9,34 +9,43 @@
   </head>
   <body data-ng-controller="CharacterBuilderCtrl">
 
-    <h1>13th Age Character Builder</h1>
+    <h1 class="titleBar">13th Age Character Builder</h1>
 
-    <ol class="navigation">
-        <li>Gamemaster input</li>
-        <li>Race</li>
-        <li>Class</li>
-        <li>Abilities</li>
-        <li>One Unique Thing</li>
-        <li>Icon Relationships</li>
-        <li>Backgrounds</li>
-        <li>Feats</li>
-        <li>Gear</li>
+    <ol class="tabSelection">
+        <li class="tabSelection-tab" data-ng-class="{ 'tabSelection-tab-isActive' : currentContentPane === 'race'}" data-ng-click="setCurrentContentPane('race')">Race</li>
+        <li class="tabSelection-tab" data-ng-class="{ 'tabSelection-tab-isActive' : currentContentPane === 'class'}" data-ng-click="setCurrentContentPane('class')">Class</li>
+        <li class="tabSelection-tab">Abilities</li>
+        <li class="tabSelection-tab">One Unique Thing</li>
+        <li class="tabSelection-tab">Icon Relationships</li>
+        <li class="tabSelection-tab">Backgrounds</li>
+        <li class="tabSelection-tab">Feats</li>
+        <li class="tabSelection-tab">Gear</li>
     </ol>
 
-    <div>
-    <label>Race: <select data-ng-model="character.raceSelection.name" data-ng-options="race.name as race.name for race in races"></select></label>
+    <div class="mainContent">
+      <div data-ng-show="currentContentPane == 'race'" class="contentPane">
+        <label>Race: <select data-ng-model="character.raceSelection.name" data-ng-options="race.name as race.name for race in races"></select></label>
+      </div>
+      <div data-ng-show="currentContentPane == 'class'" class="contentPane">
+        <label>Class: <select data-ng-model="character.classSelection.name" data-ng-options="clazz.name as clazz.name for clazz in classes"></select></label>
+      </div>
+      <div data-ng-show="currentContentPane == 'name'" class="contentPane">
+        <label>Character name: <input type="text" data-ng-model="character.characterName" placeholder="Character name&hellip;"></label>
+        <label>Player name: <input type="text" data-ng-model="character.playerName"></label>
+      </div>
+      <div data-ng-show="currentContentPane == 'oneUniqueThing'" class="contentPane">
+        <label>One Unique Thing: <textarea data-ng-model="character.oneUniqueThing"></textarea></label>
+      </div>
     </div>
-    <label>Class: <select data-ng-model="character.classSelection.name" data-ng-options="clazz.name as clazz.name for clazz in classes"></select></label>
-    <label>Character name: <input type="text" data-ng-model="character.characterName" placeholder="Character name&hellip;"></label>
-    <label>Player name: <input type="text" data-ng-model="character.playerName"></label>
-    <label>One Unique Thing: <textarea data-ng-model="character.oneUniqueThing"></textarea></label>
 
-    <h4>Preview:</h4>
-    <p id="debugOutput">{{ character }}</p>
-    <div>
-      <label>Load character <input type="file" id="files" name="files[]" data-on-read-file="loadCharacter($fileContent)" /></label>
+    <div class="preview">
+      <h2>Preview:</h2>
+      <pre>{{ characterToString() }}</pre>
     </div>
-    <button type="button" data-ng-click="saveCharacter()">Save Character</button>
+    <div class="loadAndSave">
+      <label>Load character <input type="file" id="files" name="files[]" data-on-read-file="loadCharacter($fileContent)" /></label>
+      <button type="button" data-ng-click="saveCharacter()">Save Character</button>
+    </div>
   </body>
 </html>
 

@@ -9,6 +9,12 @@ characterBuilderApp.controller('CharacterBuilderCtrl', function ($scope, $http) 
         $scope.races = data;
     });
 
+    $scope.currentContentPane = "race";
+
+    $scope.setCurrentContentPane = function setCurrentContentPane(name) {
+        $scope.currentContentPane = name;
+    };
+
     $scope.debugContent = "";
 
     $scope.character = {
@@ -39,6 +45,10 @@ characterBuilderApp.controller('CharacterBuilderCtrl', function ($scope, $http) 
         hasShield : false
     };
 
+    $scope.characterToString = function characterToString() {
+        return JSON.stringify($scope.character, null /*replacerFn*/, 4 /*indent*/);
+    }
+
     $scope.saveCharacter = function saveCharacter() {
         $scope.debug($scope.character);
         // There's a bit of oddity where we need to add an actual link to save
@@ -47,7 +57,7 @@ characterBuilderApp.controller('CharacterBuilderCtrl', function ($scope, $http) 
         var destroyClickedElement = function destroyClickedElement(e) {
             document.body.removeChild(e.target);
         };
-        var characterInStringForm = JSON.stringify($scope.character);
+        var characterInStringForm = JSON.stringify($scope.character, null /* replacerFn */, 4 /*indent*/);
         var blob = new Blob([characterInStringForm], {type:"text/plain"});
         var downloadLink = document.createElement("a");
         downloadLink.download = "character.txt";
