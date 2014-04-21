@@ -14,7 +14,7 @@
     <ol class="tabSelection">
         <li class="tabSelection-tab" data-ng-class="{ 'tabSelection-tab-isActive' : currentContentPane === 'race'}" data-ng-click="setCurrentContentPane('race')">Race</li>
         <li class="tabSelection-tab" data-ng-class="{ 'tabSelection-tab-isActive' : currentContentPane === 'class'}" data-ng-click="setCurrentContentPane('class')">Class</li>
-        <li class="tabSelection-tab">Abilities</li>
+        <li class="tabSelection-tab" data-ng-class="{ 'tabSelection-tab-isActive' : currentContentPane === 'abilities'}" data-ng-click="setCurrentContentPane('abilities')">Abilities</li>
         <li class="tabSelection-tab">One Unique Thing</li>
         <li class="tabSelection-tab">Icon Relationships</li>
         <li class="tabSelection-tab">Backgrounds</li>
@@ -23,24 +23,38 @@
     </ol>
 
     <div class="mainContent">
-      <div data-ng-show="currentContentPane == 'race'" class="contentPane">
-        <label>Race: <select data-ng-model="character.raceSelection.name" data-ng-options="race.name as race.name for race in races"></select></label>
+      <div data-ng-show="currentContentPane === 'race'" class="contentPane">
+        <label>Race<select data-ng-model="character.raceSelection.name" data-ng-options="race.name as race.name for race in races"></select></label>
       </div>
-      <div data-ng-show="currentContentPane == 'class'" class="contentPane">
-        <label>Class: <select data-ng-model="character.classSelection.name" data-ng-options="clazz.name as clazz.name for clazz in classes"></select></label>
+      <div data-ng-show="currentContentPane === 'class'" class="contentPane">
+        <label>Class<select data-ng-model="character.classSelection.name" data-ng-options="clazz.name as clazz.name for clazz in classes"></select></label>
       </div>
-      <div data-ng-show="currentContentPane == 'name'" class="contentPane">
-        <label>Character name: <input type="text" data-ng-model="character.characterName" placeholder="Character name&hellip;"></label>
-        <label>Player name: <input type="text" data-ng-model="character.playerName"></label>
+      <div data-ng-show="currentContentPane === 'abilities'" class="contentPane">
+        <h2>Abilities</h2>
+        <div>Points remaining: {{ abilityPointsRemaining() }}</div>
+        <div>AC Bonus: {{ acBonusFromAbilities() }}</div>
+        <div>PD Bonus: {{ pdBonusFromAbilities() }}</div>
+        <div>MD Bonus: {{ mdBonusFromAbilities() }}</div>
+        <label>Strength     <select data-ng-model="character.baseAbilities.strength"     data-ng-options="score for score in abilityScoreOptions"></select></label>
+        <label>Constitution <select data-ng-model="character.baseAbilities.constitution" data-ng-options="score for score in abilityScoreOptions"></select></label>
+        <label>Dexterity    <select data-ng-model="character.baseAbilities.dexterity"    data-ng-options="score for score in abilityScoreOptions"></select></label>
+        <label>Intelligence <select data-ng-model="character.baseAbilities.intelligence" data-ng-options="score for score in abilityScoreOptions"></select></label>
+        <label>Wisdom       <select data-ng-model="character.baseAbilities.wisdom"       data-ng-options="score for score in abilityScoreOptions"></select></label>
+        <label>Charisma     <select data-ng-model="character.baseAbilities.charisma"     data-ng-options="score for score in abilityScoreOptions"></select></label>
       </div>
-      <div data-ng-show="currentContentPane == 'oneUniqueThing'" class="contentPane">
-        <label>One Unique Thing: <textarea data-ng-model="character.oneUniqueThing"></textarea></label>
+      <div data-ng-show="currentContentPane === 'name'" class="contentPane">
+        <label>Character name<input type="text" data-ng-model="character.characterName" placeholder="Character name&hellip;"></label>
+        <label>Player name<input type="text" data-ng-model="character.playerName"></label>
+      </div>
+      <div data-ng-show="currentContentPane === 'oneUniqueThing'" class="contentPane">
+        <label>One Unique Thing<textarea data-ng-model="character.oneUniqueThing"></textarea></label>
       </div>
     </div>
 
     <div class="preview">
-      <h2>Preview:</h2>
-      <pre>{{ characterToString() }}</pre>
+      <div class="preview-inner">
+          <pre>{{ characterToString() }}</pre>
+      </div>
     </div>
     <div class="loadAndSave">
       <label>Load character <input type="file" id="files" name="files[]" data-on-read-file="loadCharacter($fileContent)" /></label>

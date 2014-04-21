@@ -15,6 +15,58 @@ characterBuilderApp.controller('CharacterBuilderCtrl', function ($scope, $http) 
         $scope.currentContentPane = name;
     };
 
+    $scope.abilityScoreOptions = [8,9,10,11,12,13,14,15,16,17,18];
+
+    $scope.abilityScoreCosts = {
+         8 :  0,
+         9 :  1,
+        10 :  2,
+        11 :  3,
+        12 :  4,
+        13 :  5,
+        14 :  6,
+        15 :  8,
+        16 : 10,
+        17 : 13,
+        18 : 16 
+    };
+
+    $scope._calculateAbilityModifier = function calculateAbilityModifier(score) {
+        return Math.floor((score - 10)/2.0);
+    };
+
+    $scope.abilityPointsRemaining = function abilityPointsRemaining() {
+        var remainingPoints = 28;
+        remainingPoints -= $scope.abilityScoreCosts[$scope.character.baseAbilities.strength];
+        remainingPoints -= $scope.abilityScoreCosts[$scope.character.baseAbilities.constitution];
+        remainingPoints -= $scope.abilityScoreCosts[$scope.character.baseAbilities.dexterity];
+        remainingPoints -= $scope.abilityScoreCosts[$scope.character.baseAbilities.intelligence];
+        remainingPoints -= $scope.abilityScoreCosts[$scope.character.baseAbilities.wisdom];
+        remainingPoints -= $scope.abilityScoreCosts[$scope.character.baseAbilities.charisma];
+        return remainingPoints;
+    };
+
+    $scope.acBonusFromAbilities = function acBonusFromAbilities() {
+        var con = $scope.character.baseAbilities.constitution;
+        var dex = $scope.character.baseAbilities.dexterity;
+        var wis = $scope.character.baseAbilities.wisdom;
+        return $scope._calculateAbilityModifier(median([con, dex, wis]));
+    };
+
+    $scope.pdBonusFromAbilities = function pdBonusFromAbilities() {
+        var con = $scope.character.baseAbilities.constitution;
+        var dex = $scope.character.baseAbilities.dexterity;
+        var str = $scope.character.baseAbilities.strength;
+        return $scope._calculateAbilityModifier(median([con, dex, str]));
+    };
+
+    $scope.mdBonusFromAbilities = function mdBonusFromAbilities() {
+        var intl = $scope.character.baseAbilities.intelligence;
+        var wis = $scope.character.baseAbilities.wisdom;
+        var cha = $scope.character.baseAbilities.charisma;
+        return $scope._calculateAbilityModifier(median([intl, wis, cha]));
+    };
+
     $scope.debugContent = "";
 
     $scope.character = {
@@ -105,3 +157,12 @@ characterBuilderApp.directive('onReadFile', function ($parse) {
     };
 });
 
+function median(values) {
+    values.sort( function(a,b) {return a - b; } );
+    var half = Math.floor(values.length/2);
+    if (values.length % 2) {
+        return values[half];
+    } else {
+        return (values[half-1] + values[half]) / 2.0;
+    }
+}

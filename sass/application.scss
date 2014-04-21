@@ -16,6 +16,7 @@
  */
 
 $mainBackgroundColor: #fffaea;
+$defaultFontSize : 16px;
 
 /* Base level styling.
  */
@@ -23,6 +24,16 @@ $mainBackgroundColor: #fffaea;
 body {
     background: $mainBackgroundColor;
     font-family: Athelas, serif;
+    font-size: $defaultFontSize;
+}
+
+label {
+    font-size: 0.8 * $defaultFontSize;
+    display: inline-block;
+    input, select {
+       display: block;
+       font-size: $defaultFontSize;
+    }
 }
 
 /* Modules
@@ -71,7 +82,14 @@ $mainContentMarginLeft : $tabSelectionWidth + 2 * $tabSelectionHorizontalPadding
 }
 
 .preview {
-    margin-left: $mainContentMarginLeft;
+    position: fixed;
+    width: 20em;
+    top: 5em;
+    right: 0;
+}
+
+.preview-inner { 
+    font-size: 0.6 * $defaultFontSize;
 }
 
 .mainContent {
