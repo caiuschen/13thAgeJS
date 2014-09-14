@@ -94,6 +94,7 @@ $mainContentMarginLeft : $tabSelectionWidth + 2 * $tabSelectionHorizontalPadding
 
 .mainContent {
     margin-left: $mainContentMarginLeft + 0.1em;
+    margin-right: 3em;
 }
 
 .loadAndSave {

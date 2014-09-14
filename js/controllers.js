@@ -7,6 +7,11 @@ characterBuilderApp.controller('CharacterBuilderCtrl', function ($scope, $http) 
 
     $http.get('json/races.json').success(function(data) {
         $scope.races = data;
+        var tmp = {};
+        for (index in data) {
+           tmp[data[index].name] = data[index];
+        }
+        $scope.raceMap = tmp;
     });
 
     $scope.currentContentPane = "race";
@@ -46,25 +51,32 @@ characterBuilderApp.controller('CharacterBuilderCtrl', function ($scope, $http) 
         return remainingPoints;
     };
 
+    $scope._calculateMedianBonus = function _calculateMedianBonus(arrayOfAbilityScores) {
+        return $scope._calculateAbilityModifier(median(arrayOfAbilityScores));
+    };
+
     $scope.acBonusFromAbilities = function acBonusFromAbilities() {
-        var con = $scope.character.baseAbilities.constitution;
-        var dex = $scope.character.baseAbilities.dexterity;
-        var wis = $scope.character.baseAbilities.wisdom;
-        return $scope._calculateAbilityModifier(median([con, dex, wis]));
+        return $scope._calculateMedianBonus([
+            $scope.character.baseAbilities.constitution,
+            $scope.character.baseAbilities.dexterity,
+            $scope.character.baseAbilities.wisdom
+        ]);
     };
 
     $scope.pdBonusFromAbilities = function pdBonusFromAbilities() {
-        var con = $scope.character.baseAbilities.constitution;
-        var dex = $scope.character.baseAbilities.dexterity;
-        var str = $scope.character.baseAbilities.strength;
-        return $scope._calculateAbilityModifier(median([con, dex, str]));
+        return $scope._calculateMedianBonus([
+            $scope.character.baseAbilities.constitution,
+            $scope.character.baseAbilities.dexterity,
+            $scope.character.baseAbilities.strength
+        ]);
     };
 
     $scope.mdBonusFromAbilities = function mdBonusFromAbilities() {
-        var intl = $scope.character.baseAbilities.intelligence;
-        var wis = $scope.character.baseAbilities.wisdom;
-        var cha = $scope.character.baseAbilities.charisma;
-        return $scope._calculateAbilityModifier(median([intl, wis, cha]));
+        return $scope._calculateMedianBonus([
+            $scope.character.baseAbilities.intelligence,
+            $scope.character.baseAbilities.wisdom,
+            $scope.character.baseAbilities.charisma
+        ]);
     };
 
     $scope.debugContent = "";
@@ -83,12 +95,12 @@ characterBuilderApp.controller('CharacterBuilderCtrl', function ($scope, $http) 
             charisma : 8
         },
         classSelection : {
-            name : "No class selected",
+            name : "Unselected",
             chosenAbilityAdjustments : [],
             classTalentSelections : []
         },
         raceSelection : {
-            name : "No race selected",
+            name : "Unselected",
             chosenAbilityAdjustment : null,
             powerSelection : null
         },

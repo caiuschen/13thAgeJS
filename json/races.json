@@ -1,6 +1,12 @@
-[
-    {
-        "name" : "human",
+{
+    "Unselected" : {
+        "name" : "Unselected",
+        "abilityOptions" : [],
+        "grantsBonusFeat" : false,
+        "racialPowers" : []
+    },
+    "Human" : {
+        "name" : "Human",
         "abilityOptions" : ["strength","constitution","dexterity","intelligence","wisdom","charisma"],
         "grantsBonusFeat" : true,
         "racialPowers" : [
@@ -17,8 +23,8 @@
             }
         ]
     },
-    {
-        "name" : "dwarf",
+    "Dwarf" : {
+        "name" : "Dwarf",
         "abilityOptions" : ["consitution", "wisdom"],
         "racialPowers" : [
             {
@@ -33,8 +39,8 @@
             }
         ]
     },
-    {
-        "name" : "half-orc",
+    "Half-orc" : {
+        "name" : "Half-orc",
         "abilityOptions" : ["strength", "dexterity"],
         "racialPowers" : [
             {
@@ -49,8 +55,8 @@
             }
         ]
     },
-    {
-        "name" : "dark elf",
+    "Dark Elf" : {
+        "name" : "Dark Elf",
         "abilityOptions" : ["dexterity","charisma"],
         "associatedFeats" : {
             "adventurer" : {
@@ -73,8 +79,8 @@
             }
         ]
     },
-    {
-        "name" : "high elf",
+    "High Elf" : {
+        "name" : "High Elf",
         "abilityOptions" : ["intelligence","charisma"],
         "associatedFeats" : {
             "adventurer" : {
@@ -96,8 +102,8 @@
             }
         ]
     },
-    {
-        "name" : "wood elf",
+    "Wood Elf" : {
+        "name" : "Wood Elf",
         "abilityOptions" : ["dexterity","wisdom"],
         "associatedFeats" : {
             "adventurer" : {
@@ -120,8 +126,8 @@
             }
         ]
     },
-    {
-        "name" : "gnome",
+    "Gnome" : {
+        "name" : "Gnome",
         "abilityOptions" : ["dexterity", "intelligence"],
         "traits" : [
             {
@@ -147,8 +153,8 @@
             }
         ]
     },
-    {
-        "name" : "half-elf",
+    "Half-elf" : {
+        "name" : "Half-elf",
         "abilityOptions" : ["consitution", "charisma"],
         "racialPowers" : [
             {
@@ -163,8 +169,8 @@
             }
         ]
     },
-    {
-        "name" : "halfling",
+    "Halfling" : {
+        "name" : "Halfling",
         "abilityOptions" : ["consitution", "dexterity"],
         "traits" : [
             {
@@ -185,8 +191,8 @@
             }
         ]
     },
-    {
-        "name" : "dragonic",
+    "Dragonic" : {
+        "name" : "Dragonic",
         "abilityOptions" : ["strength", "charisma"],
         "racialPowers" : [
             {
@@ -201,8 +207,8 @@
             }
         ]
     },
-    {
-        "name" : "holy one",
+    "Holy One" : {
+        "name" : "Holy One",
         "abilityOptions" : ["wisdom", "charisma"],
         "racialPowers" : [
             {
@@ -217,8 +223,8 @@
             }
         ]
     },
-    {
-        "name" : "forgeborn",
+    "Forgeborn" : {
+        "name" : "Forgeborn",
         "abilityOptions" : ["strength", "constitution"],
         "racialPowers" : [
             {
@@ -233,8 +239,8 @@
             }
         ]
     },
-    {
-        "name" : "tiefling",
+    "Tiefing" : {
+        "name" : "Tiefling",
         "abilityOptions" : ["strength", "intelligence"],
         "racialPowers" : [
             {
@@ -249,4 +255,4 @@
             }
         ]
     }
-]
+}

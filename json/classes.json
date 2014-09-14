@@ -1,11 +1,16 @@
 [
     {
-        "name" : "fighter",
+        "name" : "Unselected",
+        "abilityOptions" : [],
+        "allowedNumberOfAbilityAdjustments" : 0
+    },
+    {
+        "name" : "Fighter",
         "abilityOptions" : ["strength", "constitution"],
         "allowedNumberOfAbilityAdjustments" : 1
     },
     {
-        "name" : "rogue",
+        "name" : "Rogue",
         "abilityOptions" : ["dexterity", "charisma"],
         "allowedNumberOfAbilityAdjustments" : 1
     }

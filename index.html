@@ -23,9 +23,12 @@
     </ol>
 
     <div class="mainContent">
-      <div data-ng-show="currentContentPane === 'race'" class="contentPane">
-        <label>Race<select data-ng-model="character.raceSelection.name" data-ng-options="race.name as race.name for race in races"></select></label>
-      </div>
+      <fieldset data-ng-show="currentContentPane === 'race'" class="contentPane">
+        <legend>Racial Options</legend>
+        <label>Race<select data-ng-model="character.raceSelection.name" data-ng-options="raceName as raceName for (raceName, raceObject) in races"></select></label>
+        <label>Ability Adjustment<select data-ng-model="character.raceSelection.chosenAbilityAdjustment"
+            data-ng-options="abilityOption for abilityOption in races[character.raceSelection.name].abilityOptions"></select></label>
+      </fieldset>
       <div data-ng-show="currentContentPane === 'class'" class="contentPane">
         <label>Class<select data-ng-model="character.classSelection.name" data-ng-options="clazz.name as clazz.name for clazz in classes"></select></label>
       </div>
