@@ -30,7 +30,7 @@ body {
 label {
     font-size: 0.8 * $defaultFontSize;
     display: inline-block;
-    input, select {
+    input, select, textarea {
        display: block;
        font-size: $defaultFontSize;
     }

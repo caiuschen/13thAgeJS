@@ -79,6 +79,23 @@ characterBuilderApp.controller('CharacterBuilderCtrl', function ($scope, $http) 
         ]);
     };
 
+
+    $scope.iconRelationStrengths = [1,2,3];
+    $scope.iconRelationTypes = ["positive", "conflicted", "negative"];
+    $scope.relation = {};
+    $scope.relation.strength = $scope.iconRelationStrengths[0];
+    $scope.relation.type = $scope.iconRelationTypes[0];
+    $scope.removeIconRelation = function removeIcon(iconName) {
+        var remain = $scope.character.iconRelations.filter(function(o) {
+            return o !== iconName;
+        });
+        $scope.character.iconRelations = remain;
+    };
+
+    $scope.addIconRelation = function addIcon(relation) {
+        $scope.character.iconRelations.push(relation);
+    };
+
     $scope.debugContent = "";
 
     $scope.character = {
@@ -104,6 +121,18 @@ characterBuilderApp.controller('CharacterBuilderCtrl', function ($scope, $http) 
             chosenAbilityAdjustment : null,
             powerSelection : null
         },
+	iconRelations : [
+            {
+		type: "positive",
+		strength: 1,
+		icon: "Lich King",
+		reason: "just because"},
+            {
+		type: "conflicted",
+		strength: 2,
+		icon: "Priestess",
+		reason: "she's cool"}
+	],
         powerSelections : [],
         armorLevel : "light",
         hasShield : false
