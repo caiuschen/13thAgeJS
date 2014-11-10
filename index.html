@@ -50,28 +50,41 @@
       <div data-ng-show="currentContentPane === 'oneUniqueThing'" class="contentPane">
 	<h2> Character Background </h2>
 	<h3> One Unique Thing </h3>
-	What makes this character unique in all the world?  <br>This has no mechanical effect (I'm invincible) but may have a strong role play effect<br>
-        <textarea cols=60 data-ng-model="character.oneUniqueThing"></textarea> <br>
-        Examples:<br>
-          - Spiders always flee from me, I've only seen them in captivity.<br>
-          - I've won the town zucchini growing contest for the past 35 years.<br>
-          - I'm the only agnostic cleric, but the gods believe in me.<br>
+	What makes this character unique in all the world?  <br>This has no mechanical effect (I'm invincible) but may have a strong role play effect<br><br>
+        <textarea cols=60 data-ng-model="character.oneUniqueThing" placeholder="Spiders always flee from me, I've only seen them in captivity." ></textarea> <br>
+
 	<h3> Icon Relationships </h3>
-	How does this character relate to the most powerful and wellknown people of the world? <br><br>
+          <data-ng-pluralize count="totalRelationPoints" when="{1: '{} point', 'other': '{} points'}">
+          </data-ng-pluralize> of {{maxRelationPoints}}</h3>
+        <div data-ng-show="isEmpty(character.iconRelations)"> None yet </div>
 	<div data-ng-repeat="relation in character.iconRelations" class="contentPane">
-	  <b>{{relation.icon}}</b> - {{relation.strength}} points {{relation.type}} 
+	  <b>{{relation.icon}}</b> - 
+          <data-ng-pluralize count="relation.points" when="{1: '{} point', 'other': '{} points'}"></data-ng-pluralize> {{relation.type}} 
 	  <button type="button" data-ng-click="removeIconRelation(relation)"> - </button><br>
-	      {{relation.reason}}
+	  {{relation.reason}}
 	</div><br>
-        <form>
-          Icon: <input type="text" data-ng-model="relation.icon" placeholder="Santa Clause"><br>
-          Relation Type: <select data-ng-model="relation.type" data-ng-options="e for e in iconRelationTypes"></select><br>
-          Relation Strength: <select data-ng-model="relation.strength" data-ng-options="e for e in iconRelationStrengths"></select><br>
-          Why: <input type="text" data-ng-model="relation.reason" placeholder="I've been good all year"><br>
-          <button data-ng-click="addIconRelation(relation)">Add</button>
-        </form>
-	Examples:<br>
+	What's this character's history with the influential figures of the world? <br>Add positive, conflicted, or negative relations. <br><br>
+        <table>
+          <tr><td>Icon:</td> <td><input type="text" data-ng-model="relation.icon" placeholder="Santa Clause"></td>
+          <tr><td>Points / Type:</td> <td><select data-ng-model="relation.points" data-ng-options="e for e in iconRelationPoints"></select>  <select data-ng-model="relation.type" data-ng-options="e for e in iconRelationTypes"></select>
+          <tr><td>Why:</td> <td> <input type="text" data-ng-model="relation.reason" placeholder="I've been good all year"></td>
+        </Table>
+        <button data-ng-click="addIconRelation(relation)">Add</button>
+
 	<h3> Backgrounds </h3>
+          <data-ng-pluralize count="totalBackgroundPoints" when="{1: '{} point', 'other': '{} points'}">
+          </data-ng-pluralize> of {{maxBackgroundPoints}}</h3>
+        <div data-ng-show="isEmpty(character.backgrounds)"> None yet </div>
+	<div data-ng-repeat="background in character.backgrounds" class="contentPane">
+          {{background.points}} - {{background.description}}
+	  <button type="button" data-ng-click="removeBackground(background)"> - </button><br>
+        </div><br>
+	What experiences have formed this characters skills? <br><br>
+        <table>
+          <tr><td>Description:</td> <td> <input type="text" data-ng-model="background.description" placeholder="Research assistant for a silver dragon"></td>
+          <tr><td>Points:</td> <td><select data-ng-model="background.points" data-ng-options="e for e in backgroundPoints"></select>
+        </table>
+        <button data-ng-click="addBackground(background)">Add</button>
 	
       </div>
     </div>
