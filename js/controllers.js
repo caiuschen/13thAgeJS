@@ -80,21 +80,69 @@ characterBuilderApp.controller('CharacterBuilderCtrl', function ($scope, $http) 
     };
 
 
-    $scope.iconRelationStrengths = [1,2,3];
+    $scope.iconRelationPoints = [1,2,3];
     $scope.iconRelationTypes = ["positive", "conflicted", "negative"];
     $scope.relation = {};
-    $scope.relation.strength = $scope.iconRelationStrengths[0];
+    $scope.relation.points = $scope.iconRelationPoints[0];
     $scope.relation.type = $scope.iconRelationTypes[0];
+
+    $scope.totalRelationPoints = 0;
+    $scope.maxRelationPoints = 3;
+    $scope.sumRelations = function() {
+        $scope.totalRelationPoints = $scope.character.iconRelations.reduce(
+            function(prev,curr,index,arr) {
+                return prev + curr.points;
+            }, 0);
+    };
+
     $scope.removeIconRelation = function removeIcon(iconName) {
         var remain = $scope.character.iconRelations.filter(function(o) {
             return o !== iconName;
         });
         $scope.character.iconRelations = remain;
+        $scope.sumRelations();
     };
 
     $scope.addIconRelation = function addIcon(relation) {
         $scope.character.iconRelations.push(relation);
+        $scope.relation = {"points": $scope.iconRelationPoints[0],
+                          "type": $scope.iconRelationTypes[0]};
+        $scope.sumRelations();
     };
+
+    $scope.totalBackgroundPoints = 0;
+    $scope.maxBackgroundPoints = 8;
+    $scope.backgroundPoints = [1,2,3,4,5];
+    $scope.background = {};
+    $scope.background.points = $scope.backgroundPoints[0];
+    $scope.sumBackgrounds = function() {
+        $scope.totalBackgroundPoints = $scope.character.backgrounds.reduce(
+            function(prev,curr,index,arr) {
+                return prev + curr.points;
+            }, 0);
+    };
+
+    $scope.removeBackground = function removeBackground(description) {
+        console.log('removing');
+        var remain = $scope.character.backgrounds.filter(function(o) {
+            console.log("o.description: " + o.description);
+            console.log("local description" + description);
+            console.log(o.description == description);
+            return o !== description;
+        });
+        $scope.character.backgrounds = remain;
+        $scope.sumBackgrounds();
+    };
+
+
+    $scope.addBackground = function addBackground(background) {
+        console.log('add');
+        $scope.character.backgrounds.push(background);
+        $scope.background = {"points": $scope.backgroundPoints[0],
+                             "description": null};
+        $scope.sumBackgrounds();
+    };
+    
 
     $scope.debugContent = "";
 
@@ -122,17 +170,9 @@ characterBuilderApp.controller('CharacterBuilderCtrl', function ($scope, $http) 
             powerSelection : null
         },
 	iconRelations : [
-            {
-		type: "positive",
-		strength: 1,
-		icon: "Lich King",
-		reason: "just because"},
-            {
-		type: "conflicted",
-		strength: 2,
-		icon: "Priestess",
-		reason: "she's cool"}
 	],
+        backgrounds: [
+        ],
         powerSelections : [],
         armorLevel : "light",
         hasShield : false
